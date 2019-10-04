@@ -1,8 +1,32 @@
 import React, { useState } from 'react'
 import { StyleSheet } from 'react-native'
 import Checkbox from 'react-native-modest-checkbox'
-import { View, Title, Tile, Caption, Icon, Screen, ListView, Divider, TextInput } from '@shoutem/ui'
+import { View, Title, Tile, Caption, Icon, Screen, ListView, Divider, TextInput, Video } from '@shoutem/ui'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+
+function BloodPressure() {
+  return (
+    <View styleName="horizontal">
+      <TextInput
+        placeholder={`High`}
+        onChangeText={() => { }}
+        style={{
+          ...styles.textInputStyle,
+          width: 95
+        }}
+      />
+      <TextInput
+        placeholder={`Low`}
+        onChangeText={() => { }}
+        style={{
+          ...styles.textInputStyle,
+          width: 95,
+          marginLeft: 10
+        }}
+      />
+    </View>
+  )
+}
 
 function TasksScreen() {
   const [tasks, setTasks] = useState([
@@ -13,7 +37,7 @@ function TasksScreen() {
       category: "Heart",
       isDone: false,
       icon: 'pills',
-      color: 'green'
+      color: '#add8e6'
     },
     {
       id: 2,
@@ -22,7 +46,7 @@ function TasksScreen() {
       category: "Physio",
       isDone: false,
       icon: 'walking',
-      color: 'green'
+      color: '#ffbf00'
     },
     {
       id: 3,
@@ -30,9 +54,9 @@ function TasksScreen() {
       time: "10:00 AM",
       category: "Blood Pressure",
       isDone: false,
-      hasInput: true,
+      input: <BloodPressure />,
       icon: 'tint',
-      color: 'red'
+      color: '#bb0a1e'
     },
     {
       id: 4,
@@ -44,12 +68,25 @@ function TasksScreen() {
       color: 'green'
     },
     {
+      id: 6,
+      name: "Physiotherapy Exercise",
+      time: "12:00 PM",
+      category: "Physiotherapy",
+      isDone: false,
+      icon: 'walking',
+      color: '#ffbf00'
+    },
+    {
       id: 5,
       name: "Blood Sugar",
       time: "12:00 PM",
       category: "Blood Sugar",
       isDone: false,
-      hasInput: true,
+      input: <TextInput
+        placeholder={`Sugar`}
+        onChangeText={() => { }}
+        style={styles.textInputStyle}
+      />,
       icon: 'vial',
       color: 'red'
     }
@@ -64,52 +101,91 @@ function TasksScreen() {
       }
       return task
     })
-    console.log(id, checked, updatedTasks)
     setTasks(updatedTasks)
   }
 
-  const renderRow = ({ id, name, time, category, isDone, hasInput, icon, color }) => <>
-    <Tile>
-      <View styleName="content" >
-        <View styleName="vertical">
-          <View styleName="horizontal space-between">
-            <View styleName="horizontal">
-              <FontAwesome5 name={icon} style={{ ...styles.iconStyle }} />
-              <Title>{name}</Title>
+  const renderRow = ({ id, name, time, category, isDone, input, icon, color }) =>
+    <>
+      {name === 'Physiotherapy Exercise'
+        ?
+        <Tile>
+
+          <View styleName="content" >
+            <View styleName="vertical">
+              <View styleName="horizontal space-between" style={{ paddingBottom: 11 }}>
+                <View styleName="horizontal">
+                  <FontAwesome5 name={icon} style={{ ...styles.iconStyle, color }} />
+                  <Title>{name}</Title>
+                </View>
+                <Checkbox
+                  checked={isDone}
+                  label=''
+                  onChange={(checked) => markComplete(id, checked)}
+                />
+              </View>
+              <View>
+                {
+                  input ? input : null
+                }
+              </View>
+              <Video
+                source={{ uri: 'https://www.youtube.com/watch?v=Hy1qjQomD8Y' }}
+                poster={'https://i.ytimg.com/vi/1tavDv5hXpo/hqdefault.jpg?sqp=-oaymwEXCNACELwBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLB5H6NLcL2tWeeTPC8snOAqHZGgVw'}
+                height={200}
+                width={300}
+              />
             </View>
-            <Checkbox
-              checked={isDone}
-              label=''
-              onChange={(checked) => markComplete(id, checked)}
-            />
           </View>
-          <View>
-            {
-              hasInput ?
-                <TextInput
-                  placeholder={`Enter reading`}
-                  onChangeText={() => { }}
-                  style={styles.textInputStyle}
-                /> : null
-            }
+        </Tile>
+
+        :
+        <Tile>
+          <View styleName="content" >
+            <View styleName="vertical">
+
+              <View styleName="horizontal space-between">
+                <View styleName="horizontal">
+                  <FontAwesome5 name={icon} style={{ ...styles.iconStyle, color }} />
+                  <Title>{name}</Title>
+                </View>
+                <Checkbox
+                  checked={isDone}
+                  label=''
+                  onChange={(checked) => markComplete(id, checked)}
+                />
+              </View>
+              <View>
+                {
+                  input ? input : null
+                }
+              </View>
+            </View>
+            <View styleName="horizontal space-between">
+              <Caption>{category}</Caption>
+              <Caption>{time}</Caption>
+            </View>
           </View>
-        </View>
-        <View styleName="horizontal space-between">
-          <Caption>{category}</Caption>
-          <Caption>{time}</Caption>
-        </View>
-      </View>
-    </Tile>
-    <Divider styleName="line" />
-  </>
+        </Tile>
+      }
+
+      <Divider styleName="line" />
+
+    </>
 
   return (
-    <View style={styles.container}>
-      <ListView
-        data={tasks}
-        renderRow={renderRow}
-      />
-    </View>
+    <>
+      <Divider styleName="section-header">
+        <Caption>Tap the checkbox once you've completed the task</Caption>
+      </Divider>
+      <View style={styles.container}>
+        <ListView
+          data={tasks}
+          renderRow={renderRow}
+        />
+
+      </View>
+    </>
+
   )
 }
 
@@ -124,7 +200,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    padding: 10
+    padding: 5
   },
   textInputStyle: {
     padding: 10,
