@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import { Examples, Screen, View, Card, Image, Subtitle, Caption } from '@shoutem/ui';
 import { Col, Row, Grid } from "react-native-easy-grid";
-
+import { IMAGENAME } from 'tasks.jpeg';
 
 export default function HomeScreen({ navigation }) {
   const navigateTo = (page) => {
@@ -24,25 +24,26 @@ export default function HomeScreen({ navigation }) {
             <Text>HOME SCREEN</Text>
 
           </View>
-          <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', background: 'green' }}>
+          <View style={{ flex: 2, flexDirection: 'row', justifyContent: 'center', background: 'green' }}>
             <Image
-              styleName="medium"
-              source={{ uri: 'https://shoutem.github.io/img/ui-toolkit/examples/image-3.png' }}
+
+              styleName="large-banner"
+              source={{ uri: 'http://2.bp.blogspot.com/-LAA3H_ug9Ko/U8Varxvm96I/AAAAAAAAAas/yVNufrdcZM4/s1600/Screen+Shot+2014-07-15+at+9.45.17+AM.png' }}
             />
           </View>
         </View>
-        <View style={{ flex: 12, paddingTop: 12, marginTop: 15 }}>
+        <View style={{ flex: 12, paddingTop: 6, marginTop: 15 }}>
           <View style={{ flex: 3, flexDirection: 'row' }}>
 
-            <TouchableOpacity styleName="flexible" style={{ paddingLeft: 5, paddingRight: 5 }}>
+            <TouchableOpacity styleName="flexible" style={{ paddingLeft: 5, paddingRight: 5 }} onPress={() => navigateTo("Tasks")}>
               <Card styleName="flexible">
                 <Image
                   styleName="medium-wide"
-                  source={{ uri: 'https://shoutem.github.io/img/ui-toolkit/examples/image-10.png' }}
+                  source={IMAGENAME}
                 />
                 <View styleName="content">
-                  <Subtitle>Choosing The Right Boutique Hotel For You</Subtitle>
-                  <Caption>21 hours ago</Caption>
+                  <Subtitle style={{ marginBottom: 0 }}>Today's Tasks</Subtitle>
+                  <Caption>7 remaining</Caption>
                 </View>
               </Card>
             </TouchableOpacity>
@@ -54,13 +55,13 @@ export default function HomeScreen({ navigation }) {
                   source={{ uri: 'https://shoutem.github.io/img/ui-toolkit/examples/image-10.png' }}
                 />
                 <View styleName="content">
-                  <Subtitle>Choosing The Right Boutique Hotel For You</Subtitle>
-                  <Caption>21 hours ago</Caption>
+                  <Subtitle style={{ marginBottom: 0 }}>Track Progress</Subtitle>
+                  <Caption>14 parameters and issues</Caption>
                 </View>
               </Card>
             </TouchableOpacity>
           </View>
-          <View style={{ flex: 3, flexDirection: 'row', justifyContent: 'space-between' }}>
+          <View style={{ flex: 3, flexDirection: 'row', justifyContent: 'space-between', paddingBottom: 10 }}>
             <TouchableOpacity styleName="flexible" style={{ paddingLeft: 5, paddingRight: 5 }}>
               <Card styleName="flexible">
                 <Image
@@ -68,8 +69,9 @@ export default function HomeScreen({ navigation }) {
                   source={{ uri: 'https://shoutem.github.io/img/ui-toolkit/examples/image-10.png' }}
                 />
                 <View styleName="content">
-                  <Subtitle>Choosing The Right Boutique Hotel For You</Subtitle>
-                  <Caption>21 hours ago</Caption>
+                  <Subtitle style={{ paddingBottom: 0, marginBottom: 0 }}>Doctor Visits and Schedules</Subtitle>
+                  {/* <Text style={{ color: 'grey' }}>No visits Today</Text> */}
+                  <Caption style={{ paddingTop: 0 }}>No visit today</Caption>
                 </View>
               </Card>
             </TouchableOpacity>
@@ -81,8 +83,8 @@ export default function HomeScreen({ navigation }) {
                   source={{ uri: 'https://shoutem.github.io/img/ui-toolkit/examples/image-10.png' }}
                 />
                 <View styleName="content">
-                  <Subtitle>Choosing The Right Boutique Hotel For You</Subtitle>
-                  <Caption>21 hours ago</Caption>
+                  <Subtitle style={{ marginBottom: 0 }}>Contact your Doctor</Subtitle>
+                  <Caption>No calls scheduled</Caption>
                 </View>
               </Card>
             </TouchableOpacity>
@@ -94,6 +96,6 @@ export default function HomeScreen({ navigation }) {
 }
 
 HomeScreen.navigationOptions = {
-  header: null,
+  title: 'Care More',
 };
 

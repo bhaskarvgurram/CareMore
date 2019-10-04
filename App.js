@@ -34,6 +34,7 @@ export default class App extends PureComponent {
 
     return (
       <View styleName="flexible">
+        {/* <Examples /> */}
         <StatusBar barStyle="default" hidden={false} />
         <AppNavigator />
       </View>
