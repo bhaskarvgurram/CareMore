@@ -4,10 +4,26 @@ import {
     StyleSheet,
     View
 } from 'react-native';
-import { Layout, Text, TopNavigation, Icon } from 'react-native-ui-kitten';
+import { Layout, Text, TopNavigation, Icon, Menu } from 'react-native-ui-kitten';
 
 
 export default function Issues() {
+    state = {
+        selectedIndex: null,
+    };
+
+    data = [
+        { title: 'Heart' },
+        { title: 'Diabetes' },
+        { title: 'Blood Pressure' },
+        { title: 'Knee Injury' },
+
+    ];
+
+    onSelect = (selectedIndex) => {
+        this.setState({ selectedIndex });
+    };
+
     return (
         <>
             <TopNavigation
@@ -15,8 +31,22 @@ export default function Issues() {
                 leftControl={() => <Icon {...style} name='arrow-back' />}
                 rightControls={null}
             />
-            <Layout style={styles.container}>
-                <Text>Issues</Text>
+
+            <Layout style={styles.container} level='2'>
+
+
+                <Menu
+                    ListHeaderComponent={() => {
+                        return (<Text>
+                            Health Concerns
+                        </Text>)
+                    }}
+                    data={this.data}
+                    selectedItem={this.state.selectedIndex}
+                    onSelect={this.onItemSelect}
+                />
+
+
             </Layout>
         </>
 
@@ -26,8 +56,9 @@ export default function Issues() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
+        padding: 16
+        // alignItems: 'center',
+        // justifyContent: 'center'
 
     }
 });
