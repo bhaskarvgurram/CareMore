@@ -27,7 +27,8 @@ export default function App(props) {
         <IconRegistry icons={EvaIconsPack} />
         <ApplicationProvider mapping={mapping} theme={lightTheme}>
           <View style={styles.container}>
-            {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
+            {/* {Platform.OS === 'ios' && <StatusBar barStyle="default" />} */}
+            <StatusBar hidden />
             <AppNavigator />
           </View>
         </ApplicationProvider>
