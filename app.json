@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "caremore",
-    "slug": "caremore",
+    "name": "CareMore",
+    "slug": "my-new-project",
     "privacy": "public",
     "sdkVersion": "35.0.0",
     "platforms": [

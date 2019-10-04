@@ -4,9 +4,6 @@ import * as Font from 'expo-font';
 import React, { useState } from 'react';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { mapping, light as lightTheme } from '@eva-design/eva';
-import { ApplicationProvider, Layout, Text, IconRegistry } from 'react-native-ui-kitten';
-import { EvaIconsPack } from '@ui-kitten/eva-icons';
 
 import AppNavigator from './navigation/AppNavigator';
 
@@ -23,16 +20,10 @@ export default function App(props) {
     );
   } else {
     return (
-      <>
-        <IconRegistry icons={EvaIconsPack} />
-        <ApplicationProvider mapping={mapping} theme={lightTheme}>
-          <View style={styles.container}>
-            {/* {Platform.OS === 'ios' && <StatusBar barStyle="default" />} */}
-            <StatusBar hidden />
-            <AppNavigator />
-          </View>
-        </ApplicationProvider>
-      </>
+      <View style={styles.container}>
+        {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
+        <AppNavigator />
+      </View>
     );
   }
 }
@@ -66,5 +57,6 @@ function handleFinishLoading(setLoadingComplete) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#fff',
   },
 });
