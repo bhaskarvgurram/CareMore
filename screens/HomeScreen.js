@@ -8,6 +8,7 @@ import {
 
 
 export default function HomeScreen({navigation}) {
+  
   const navigateTo = (page) => {
     navigation.navigate(page)
   }
@@ -19,7 +20,7 @@ export default function HomeScreen({navigation}) {
 }
 
 HomeScreen.navigationOptions = {
-  header: null,
+  title: 'Care More',
 };
 
 const styles = StyleSheet.create({
