@@ -1,7 +1,7 @@
 import React from 'react';
 import { SafeAreaView } from 'react-navigation';
 import { createDrawerNavigator } from 'react-navigation-drawer';
-import { HomeScreen } from '../screens/Screens'; // <-- Import screen components
+import { HomeScreen, Issues } from '../screens/Screens'; // <-- Import screen components
 
 import { Drawer } from 'react-native-ui-kitten';
 
@@ -24,7 +24,7 @@ class DrawerNavigation extends React.Component {
   render() {
     return (
       <SafeAreaView>
-        <Drawer data={this.drawerData} onSelect={this.onRouteSelect}/>
+        <Drawer data={this.drawerData} onSelect={this.onRouteSelect} />
       </SafeAreaView>
     );
   }
@@ -32,6 +32,7 @@ class DrawerNavigation extends React.Component {
 
 export const DrawerNavigator = createDrawerNavigator({
   HomeScreen: HomeScreen,
+  Issues: Issues
 }, {
   contentComponent: DrawerNavigation,
 });

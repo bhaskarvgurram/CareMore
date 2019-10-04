@@ -14,7 +14,7 @@ export default function HomeScreen() {
         title="CareMore"
         leftControl={() => <Icon {...style} name='arrow-back' />}
         rightControls={null}
-        // style={style}
+      // style={style}
       />
       <Layout style={styles.container}>
         <Text>Welcome to UI Kitten</Text>
