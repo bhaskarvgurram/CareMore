@@ -1,9 +1,11 @@
 import React from 'react'
-import { Text } from 'react-native'
+import { View, Title } from '@shoutem/ui'
 
 function TasksScreen() {
   return (
-    <Text>Hi</Text>
+    <View>
+      <Title>Hi</Title>
+    </View>
   )
 }
 
