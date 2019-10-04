@@ -4,6 +4,30 @@ import Checkbox from 'react-native-modest-checkbox'
 import { View, Title, Tile, Caption, Icon, Screen, ListView, Divider, TextInput } from '@shoutem/ui'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
+function BloodPressure() {
+  return (
+    <View styleName="horizontal">
+      <TextInput
+        placeholder={`High`}
+        onChangeText={() => { }}
+        style={{
+          ...styles.textInputStyle,
+          width: 95
+        }}
+      />
+      <TextInput
+        placeholder={`Low`}
+        onChangeText={() => { }}
+        style={{
+          ...styles.textInputStyle,
+          width: 95,
+          marginLeft: 10
+        }}
+      />
+    </View>
+  )
+}
+
 function TasksScreen() {
   const [tasks, setTasks] = useState([
     {
@@ -30,7 +54,7 @@ function TasksScreen() {
       time: "10:00 AM",
       category: "Blood Pressure",
       isDone: false,
-      hasInput: true,
+      input: <BloodPressure />,
       icon: 'tint',
       color: 'red'
     },
@@ -49,7 +73,11 @@ function TasksScreen() {
       time: "12:00 PM",
       category: "Blood Sugar",
       isDone: false,
-      hasInput: true,
+      input: <TextInput
+        placeholder={`Sugar`}
+        onChangeText={() => { }}
+        style={styles.textInputStyle}
+      />,
       icon: 'vial',
       color: 'red'
     }
@@ -64,11 +92,10 @@ function TasksScreen() {
       }
       return task
     })
-    console.log(id, checked, updatedTasks)
     setTasks(updatedTasks)
   }
 
-  const renderRow = ({ id, name, time, category, isDone, hasInput, icon, color }) => <>
+  const renderRow = ({ id, name, time, category, isDone, input, icon, color }) => <>
     <Tile>
       <View styleName="content" >
         <View styleName="vertical">
@@ -85,12 +112,7 @@ function TasksScreen() {
           </View>
           <View>
             {
-              hasInput ?
-                <TextInput
-                  placeholder={`Enter reading`}
-                  onChangeText={() => { }}
-                  style={styles.textInputStyle}
-                /> : null
+              input ? input : null
             }
           </View>
         </View>
@@ -104,12 +126,18 @@ function TasksScreen() {
   </>
 
   return (
-    <View style={styles.container}>
-      <ListView
-        data={tasks}
-        renderRow={renderRow}
-      />
-    </View>
+    <>
+      <Divider styleName="section-header">
+        <Caption>Tap the checkbox once you've completed the task</Caption>
+      </Divider>
+      <View style={styles.container}>
+        <ListView
+          data={tasks}
+          renderRow={renderRow}
+        />
+      </View>
+    </>
+
   )
 }
 
@@ -124,7 +152,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    padding: 10
+    padding: 5
   },
   textInputStyle: {
     padding: 10,

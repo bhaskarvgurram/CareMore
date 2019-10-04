@@ -15,6 +15,10 @@ export default function HomeScreen({navigation}) {
   return (
     <View style={styles.container}>
       <Text onPress={() => navigateTo('Tasks')}>tasks</Text>
+      <Text onPress={() => navigateTo('Issues')}>Issues</Text>
+      <Text onPress={() => navigateTo('Physicians')}>Physicians</Text>
+      <Text onPress={() => navigateTo('Schedule')}>Schedule</Text>
+      <Text onPress={() => navigateTo('ManageInsurance')}>ManageInsurance</Text>
     </View>
   );
 }
