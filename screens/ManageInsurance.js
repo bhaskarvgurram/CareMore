@@ -74,7 +74,7 @@ function ManageInsurance({ navigation }) {
 
       <View styleName='horizontal h-center' style={{ flex: 0.2, marginTop: 20 }}>
         <Tile styleName="text-centric">
-          <Title styleName="sm-gutter-bottom">Hi, Weider Yu!</Title>
+          <Title styleName="sm-gutter-bottom">Hi, John Doe!</Title>
           <Caption>Here's your plan details</Caption>
         </Tile>
       </View>

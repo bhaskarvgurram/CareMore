@@ -174,6 +174,19 @@ HomeScreen.navigationOptions = {
   headerStyle: {
     fontWeight: 'medium',
     fontSize: '14'
-  }
+  },
+  headerLeft: <Image
+    styleName="small"
+    style={{height:40, width:40, marginLeft: 20}}
+    source={{ uri: 'https://cdn1.iconfinder.com/data/icons/medical-health-care-2-2/380/Heart_Care-512.png' }}
+  />
 };
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    // alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#fff',
+  }
+});
